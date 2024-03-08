@@ -578,7 +578,7 @@ export const AUTOMATION_ACTION_TYPES = [
   },
   {
     key: 'mute_conversation',
-    label: 'Silenciar conversa,
+    label: 'Silenciar conversa',
     inputType: null,
   },
   {
@@ -608,7 +608,7 @@ export const AUTOMATION_ACTION_TYPES = [
   },
   {
     key: 'change_priority',
-    label: 'Aterar Prioridade',
+    label: 'Alterar Prioridade',
     inputType: 'search_select',
   },
   {
