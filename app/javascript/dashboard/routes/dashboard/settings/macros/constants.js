@@ -11,7 +11,7 @@ export const MACRO_ACTION_TYPES = [
   },
   {
     key: 'add_label',
-    label: 'Adicionar etiquets',
+    label: 'Adicionar etiquetas',
     inputType: 'multi_select',
   },
   {
