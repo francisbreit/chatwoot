@@ -494,32 +494,32 @@ export const AUTOMATIONS = {
       },
       {
         key: 'send_message',
-        name: 'Send a message',
+        name: 'Enviar uma mensagem',
         attributeI18nKey: 'SEND_MESSAGE',
       },
       {
         key: 'send_email_transcript',
-        name: 'Send an email transcript',
+        name: 'Enviar uma transcrição por e-mail',
         attributeI18nKey: 'SEND_EMAIL_TRANSCRIPT',
       },
       {
         key: 'mute_conversation',
-        name: 'Mute conversation',
+        name: 'Silenciar conversa',
         attributeI18nKey: 'MUTE_CONVERSATION',
       },
       {
         key: 'snooze_conversation',
-        name: 'Snooze conversation',
+        name: 'Adiar conversa',
         attributeI18nKey: 'MUTE_CONVERSATION',
       },
       {
         key: 'send_webhook_event',
-        name: 'Send Webhook Event',
+        name: 'Enviar evento de webhook',
         attributeI18nKey: 'SEND_WEBHOOK_EVENT',
       },
       {
         key: 'send_attachment',
-        name: 'Send Attachment',
+        name: 'Enviar anexo',
         attributeI18nKey: 'SEND_ATTACHMENT',
       },
     ],
@@ -529,91 +529,91 @@ export const AUTOMATIONS = {
 export const AUTOMATION_RULE_EVENTS = [
   {
     key: 'conversation_created',
-    value: 'Conversation Created',
+    value: 'Conversa Criada',
   },
   {
     key: 'conversation_updated',
-    value: 'Conversation Updated',
+    value: 'Conversa Atualizada',
   },
   {
     key: 'message_created',
-    value: 'Message Created',
+    value: 'Mensagem Criada',
   },
   {
     key: 'conversation_opened',
-    value: 'Conversation Opened',
+    value: 'Conversa Aberta',
   },
 ];
 
 export const AUTOMATION_ACTION_TYPES = [
   {
     key: 'assign_agent',
-    label: 'Assign to agent',
+    label: 'Atribuir ao agente',
     inputType: 'search_select',
   },
   {
     key: 'assign_team',
-    label: 'Assign a team',
+    label: 'Atribuir ao time',
     inputType: 'search_select',
   },
   {
     key: 'add_label',
-    label: 'Add a label',
+    label: 'Adicionar etiqueta',
     inputType: 'multi_select',
   },
   {
     key: 'remove_label',
-    label: 'Remove a label',
+    label: 'Remover etiqueta',
     inputType: 'multi_select',
   },
   {
     key: 'send_email_to_team',
-    label: 'Send an email to team',
+    label: 'Enviar email para o time',
     inputType: 'team_message',
   },
   {
     key: 'send_email_transcript',
-    label: 'Send an email transcript',
+    label: 'Enviar uma transcrição por e-mail',
     inputType: 'email',
   },
   {
     key: 'mute_conversation',
-    label: 'Mute conversation',
+    label: 'Silenciar conversa,
     inputType: null,
   },
   {
     key: 'snooze_conversation',
-    label: 'Snooze conversation',
+    label: 'Adiar conversa',
     inputType: null,
   },
   {
     key: 'resolve_conversation',
-    label: 'Resolve conversation',
+    label: 'Resolver conversa',
     inputType: null,
   },
   {
     key: 'send_webhook_event',
-    label: 'Send Webhook Event',
+    label: 'Enviar evento de webhook',
     inputType: 'url',
   },
   {
     key: 'send_attachment',
-    label: 'Send Attachment',
+    label: 'Enviar anexo',
     inputType: 'attachment',
   },
   {
     key: 'send_message',
-    label: 'Send a message',
+    label: 'Enviar uma mensagem',
     inputType: 'textarea',
   },
   {
     key: 'change_priority',
-    label: 'Change Priority',
+    label: 'Aterar Prioridade',
     inputType: 'search_select',
   },
   {
     key: 'add_sla',
-    label: 'Add SLA',
+    label: 'Adicionar SLA',
     inputType: 'search_select',
   },
 ];
