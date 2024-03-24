@@ -1,270 +1,251 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
-en:
-  hello: "Hello world"
+#Files in the config/locales directory are used for internationalization
+#and are automatically loaded by Rails. If you want to use locales other
+#than English, add the necessary files in this directory.
+#To use the locales, use `I18n.t`:
+#I18n.t 'hello'
+#In views, this is aliased to just `t`:
+#<%= t('hello') %>
+#To use a different locale, set it with `I18n.locale`:
+#I18n.locale = :es
+#This would use the information in config/locales/es.yml.
+#The following keys must be escaped otherwise they will not be retrieved by
+#the default I18n backend:
+#true, false, on, off, yes, no
+#Instead, surround them with single quotes.
+#en:
+#'true': 'foo'
+#To learn more, please read the Rails Internationalization guide
+#available at https://guides.rubyonrails.org/i18n.html.
+pt_BR:
+  hello: "Olá, mundo"
   messages:
-    reset_password_success: Woot! Request for password reset is successful. Check your mail for instructions.
-    reset_password_failure: Uh ho! We could not find any user with the specified email.
-    inbox_deletetion_response: Your inbox deletion request will be processed in some time.
-
+    reset_password_success: Legal! A solicitação de alteração de senha foi bem sucedida. Verifique seu e-mail para obter instruções.
+    reset_password_failure: Uh ho! Não conseguimos encontrar nenhum usuário com o e-mail especificado.
+    inbox_deletetion_response: Seu pedido de exclusão da caixa de entrada será processado dentro de algum tempo.
   errors:
     validations:
-      presence: must not be blank
+      presence: não pode ficar em branco
     webhook:
-      invalid: Invalid events
+      invalid: Eventos inválidos
     signup:
-      disposable_email: We do not allow disposable emails
-      invalid_email: You have entered an invalid email
-      email_already_exists: "You have already signed up for an account with %{email}"
-      invalid_params: 'Invalid, please check the signup paramters and try again'
-      failed: Signup failed
+      disposable_email: Não permitimos e-mails descartáveis
+      invalid_email: Você digitou um email inválido
+      email_already_exists: "Você já se cadastrou para uma conta com %{email}"
+      failed: Registro falhou
     data_import:
       data_type:
-        invalid: Invalid data type
+        invalid: Tipo de dado inválido
     contacts:
       import:
-        failed: File is blank
+        failed: Arquivo vazio
       export:
-        success: We will notify you once contacts export file is ready to view.
+        success: Avisaremos você assim que a exportação de arquivos estiver pronta para ser exibida.
       email:
-        invalid: Invalid email
+        invalid: E-mail inválido
       phone_number:
-        invalid: should be in e164 format
+        invalid: deve estar no formato e164
     categories:
       locale:
-        unique: should be unique in the category and portal
+        unique: deve ser único na categoria e no portal
     dyte:
-      invalid_message_type: "Invalid message type. Action not permitted"
+      invalid_message_type: "Tipo de mensagem inválido. Ação não permitida"
     slack:
-      invalid_channel_id: "Invalid slack channel. Please try again"
+      invalid_channel_id: "Canal de slack inválido. Por favor, tente novamente"
     inboxes:
       imap:
-        socket_error: Please check the network connection, IMAP address and try again.
-        no_response_error: Please check the IMAP credentials and try again.
-        host_unreachable_error: Host unreachable, Please check the IMAP address, IMAP port and try again.
-        connection_timed_out_error: Connection timed out for %{address}:%{port}
-        connection_closed_error: Connection closed.
+        socket_error: Por favor, verifique a conexão de rede, endereço IMAP e tente novamente.
+        no_response_error: Por favor, verifique as credenciais de IMAP e tente novamente.
+        host_unreachable_error: Servidor inacessível, por favor, verifique o endereço e a porta de IMAP e tente novamente.
+        connection_timed_out_error: Tempo esgotado de conexão para %{address}:%{port}
+        connection_closed_error: Conexão fechada.
       validations:
-        name: should not start or end with symbols, and it should not have < > / \ @ characters.
+        name: 'não deve iniciar ou terminar com símbolos e não deve ter os caracteres: < > / \ @.'
     custom_filters:
-      number_of_records: Limit reached. The maximum number of allowed custom filters for a user per account is 50.
-      invalid_attribute: Invalid attribute key - [%{key}]. The key should be one of [%{allowed_keys}] or a custom attribute defined in the account.
-      invalid_operator: Invalid operator. The allowed operators for %{attribute_name} are [%{allowed_keys}].
-      invalid_value: Invalid value. The values provided for %{attribute_name} are invalid
+      number_of_records: Limite atingido. O número máximo de filtros personalizados permitidos para um usuário por conta é de 50.
   reports:
-    period: Reporting period %{since} to %{until}
-    utc_warning: The report generated is in UTC timezone
+    period: Reportando o período %{since} a %{until}
+    utc_warning: O relatório gerado está em fuso horário UTC
     agent_csv:
-      agent_name: Agent name
-      conversations_count: Assigned conversations
-      avg_first_response_time: Avg first response time
-      avg_resolution_time: Avg resolution time
+      agent_name: Nome do Agente
+      conversations_count: Contagem de conversas
+      avg_first_response_time: Tempo médio de primeira resposta (minutos)
+      avg_resolution_time: Tempo médio de resolução (minutos)
     inbox_csv:
-      inbox_name: Inbox name
-      inbox_type: Inbox type
-      conversations_count: No. of conversations
-      avg_first_response_time: Avg first response time
-      avg_resolution_time: Avg resolution time
+      inbox_name: Nome da Caixa de Entrada
+      inbox_type: Tipo da Caixa de Entrada
+      conversations_count: Nº de Conversas
+      avg_first_response_time: Média de tempo da primeira resposta (minutos)
+      avg_resolution_time: Tempo médio de resolução (minutos)
     label_csv:
-      label_title: Label
-      conversations_count: No. of conversations
-      avg_first_response_time: Avg first response time
-      avg_resolution_time: Avg resolution time
+      label_title: Nome do campo
+      conversations_count: Nº de Conversas
+      avg_first_response_time: Tempo médio de primeira resposta (minutos)
+      avg_resolution_time: Tempo médio de resolução (minutos)
     team_csv:
-      team_name: Team name
-      conversations_count: Conversations count
-      avg_first_response_time: Avg first response time
-      avg_resolution_time: Avg resolution time
+      team_name: Nome do departamento
+      conversations_count: Contagem de conversas
+      avg_first_response_time: Tempo médio de primeira resposta (minutos)
+      avg_resolution_time: Tempo médio de resolução (minutos)
     conversation_traffic_csv:
       timezone: Timezone
-    default_group_by: day
+    default_group_by: dia
     csat:
       headers:
-        contact_name: Contact Name
-        contact_email_address: Contact Email Address
-        contact_phone_number: Contact Phone Number
-        link_to_the_conversation: Link to the conversation
-        agent_name: Agent Name
-        rating: Rating
-        feedback: Feedback Comment
-        recorded_at: Recorded date
-
+        contact_name: Nome do contato
+        contact_email_address: E-mail de contato
+        contact_phone_number: Telefone de contato
+        link_to_the_conversation: Link para a conversa
+        agent_name: Nome do Agente
+        rating: Classificação
+        feedback: Comentário de Feedback
+        recorded_at: Data de gravação
   notifications:
     notification_title:
-      conversation_creation: "A conversation (#%{display_id}) has been created in %{inbox_name}"
-      conversation_assignment: "A conversation (#%{display_id}) has been assigned to you"
-      assigned_conversation_new_message: "A new message is created in conversation (#%{display_id})"
-      conversation_mention: "You have been mentioned in conversation (#%{display_id})"
-      sla_missed_first_response: "SLA target first response missed for conversation (#%{display_id})"
-      sla_missed_next_response: "SLA target next response missed for conversation (#%{display_id})"
-      sla_missed_resolution: "SLA target resolution missed for conversation (#%{display_id})"
-    attachment: "Attachment"
-    no_content: "No content"
+      conversation_creation: "[Nova conversa] - #%{display_id} foi criado em %{inbox_name}"
+      conversation_assignment: "[Atribuído a você] - #%{display_id} foi atribuído a você"
+      assigned_conversation_new_message: "[Nova mensagem] - #%{display_id} %{content}"
+      conversation_mention: "Você foi mencionado na conversa [ID - %{display_id}] por %{name}"
+      sla_missed_first_response: "Primeira resposta da meta de SLA perdida na conversa (#%{display_id})"
+      sla_missed_next_response: "Próxima resposta da meta de SLA perdida na conversa (#%{display_id})"
+      sla_missed_resolution: "A resolução da meta de SLA foi perdida na conversa (#%{display_id})"
+    attachment: "Anexo"
+    no_content: "Sem Conteúdo"      
   conversations:
     messages:
-      instagram_story_content: "%{story_sender} mentioned you in the story: "
-      instagram_deleted_story_content: This story is no longer available.
-      deleted: This message was deleted
+      instagram_story_content: "%{story_sender} mencionou você na conversa: "
+      instagram_deleted_story_content: Este Story não está mais disponível.
+      deleted: Esta mensagem foi apagada
       delivery_status:
-        error_code: "Error code: %{error_code}"
+        error_code: "Código de erro: %{error_code}"
     activity:
       status:
-        resolved: "Conversation was marked resolved by %{user_name}"
-        contact_resolved: "Conversation was resolved by %{contact_name}"
-        open: "Conversation was reopened by %{user_name}"
-        pending: "Conversation was marked as pending by %{user_name}"
-        snoozed: "Conversation was snoozed by %{user_name}"
-        auto_resolved: "Conversation was marked resolved by system due to %{duration} days of inactivity"
-        system_auto_open: System reopened the conversation due to a new incoming message.
+        resolved: "Conversa foi marcada como resolvida por %{user_name}"
+        contact_resolved: "A conversa foi resolvida por %{contact_name}"
+        open: "Conversa foi reaberta por %{user_name}"
+        pending: "Conversa foi marcada como pendente por %{user_name}"
+        snoozed: "Conversa não atribuída por %{user_name}"
+        auto_resolved: "Conversa foi marcada como resolvida pelo sistema por ter %{duration} dias de inatividade"
+        system_auto_open: O sistema reabriu a conversa devido a uma nova mensagem recebida.
       priority:
-        added: '%{user_name} set the priority to %{new_priority}'
-        updated: '%{user_name} changed the priority from %{old_priority} to %{new_priority}'
-        removed: '%{user_name} removed the priority'
+        added: '%{user_name} definiu a prioridade para %{new_priority}'
+        updated: '%{user_name} mudou a prioridade de %{old_priority} para %{new_priority}'
+        removed: '%{user_name} removeu a prioridade'
       assignee:
-        self_assigned: "%{user_name} self-assigned this conversation"
-        assigned: "Assigned to %{assignee_name} by %{user_name}"
-        removed: "Conversation unassigned by %{user_name}"
+        self_assigned: "%{user_name} atribuiu a si mesmo essa conversa"
+        assigned: "Atribuído a %{assignee_name} por %{user_name}"
+        removed: "Conversa não atribuída por %{user_name}"
       team:
-        assigned: "Assigned to %{team_name} by %{user_name}"
-        assigned_with_assignee: "Assigned to %{assignee_name} via %{team_name} by %{user_name}"
-        removed: "Unassigned from %{team_name} by %{user_name}"
+        assigned: "Atribuído a %{team_name} por %{user_name}"
+        assigned_with_assignee: "Atribuído a %{assignee_name} via %{team_name} por %{user_name}"
+        removed: "Desatribuído de %{team_name} por %{user_name}"
       labels:
-        added: "%{user_name} added %{labels}"
-        removed: "%{user_name} removed %{labels}"
+        added: "%{user_name} adicionou %{labels}"
+        removed: "%{user_name} removeu %{labels}"
       sla:
-        added: "%{user_name} added SLA policy %{sla_name}"
-        removed: "%{user_name} removed SLA policy %{sla_name}"
-      muted: "%{user_name} has muted the conversation"
-      unmuted: "%{user_name} has unmuted the conversation"
+        added: "%{user_name} política de SLA adicionada %{sla_name}"
+        removed: "%{user_name} política de SLA removida %{sla_name}"
+      muted: "%{user_name} silenciou a conversa"
+      unmuted: "%{user_name} reativou a conversa"
     templates:
-      greeting_message_body: "%{account_name} typically replies in a few hours."
-      ways_to_reach_you_message_body: "Give the team a way to reach you."
-      email_input_box_message_body: "Get notified by email"
-      csat_input_message_body: "Please rate the conversation"
+      greeting_message_body: "%{account_name} normalmente responde em algumas horas."
+      ways_to_reach_you_message_body: "Informe uma forma para entrarmos em contato com você."
+      email_input_box_message_body: "Seja notificado por e-mail"
+      csat_input_message_body: "Por favor, classifique a conversa"
     reply:
       email:
         header:
-          from_with_name: "%{assignee_name} from %{inbox_name} <%{from_email}>"
-          reply_with_name: "%{assignee_name} from %{inbox_name} <reply+%{reply_email}>"
-          friendly_name: "%{sender_name} from %{business_name} <%{from_email}>"
+          from_with_name: "%{assignee_name} de %{inbox_name} <reply+%{from_email}>"
+          reply_with_name: "%{assignee_name} de %{inbox_name} <reply+%{reply_email}>"
+          friendly_name: "%{sender_name} de %{business_name} <reply+%{from_email}>"
           professional_name: "%{business_name} <%{from_email}>"
       channel_email:
         header:
-          reply_with_name: "%{assignee_name} from %{inbox_name} <%{from_email}>"
+          reply_with_name: "%{assignee_name} de %{inbox_name} <reply+%{from_email}>"
           reply_with_inbox_name: "%{inbox_name} <%{from_email}>"
-      email_subject: "New messages on this conversation"
-      transcript_subject: "Conversation Transcript"
+      email_subject: "Novas mensagens nesta conversa"
+      transcript_subject: "Transcrição da conversa"
     survey:
-      response: "Please rate this conversation, %{link}"
+      response: "Por favor, classifique esta conversa, %{link}"
   contacts:
     online:
-      delete: "%{contact_name} is Online, please try again later"
+      delete: "%{contact_name} está Online, por favor, tente novamente mais tarde"
   integration_apps:
     dyte:
       name: "Dyte"
-      description: "Dyte is tool that helps you to add live audio & video to your application with just a few lines of code. This integration allows you to give an option to your agents to have a video or voice call with your customers from without leaving Chatwoot."
-      meeting_name: "%{agent_name} has started a meeting"
+      description: "Dyte é uma ferramenta que ajuda você a adicionar áudio e vídeo ao vivo em sua aplicação com apenas algumas linhas de código. Essa integração permite dar uma opção aos seus agentes para ter uma chamada de vídeo ou voz com os seus clientes sem sair esta plataforma."
+      meeting_name: "%{agent_name} começou a reunião"
     slack:
       name: "Slack"
-      description: "Slack is a chat tool that brings all your communication together in one place. By integrating Slack, you can get notified of all the new conversations in your account right inside your Slack."
+      description: "Slack é uma ferramenta que reúne todas as suas comunicações em um só lugar. Ao integrar o Slack, você pode ser notificado de todas as novas conversas da sua conta diretamente no seu Slack."
     webhooks:
       name: "Webhooks"
-      description: "Webhook events provide you the realtime information about what's happening in your account. You can make use of the webhooks to communicate the events to your favourite apps like Slack or Github. Click on Configure to set up your webhooks."
+      description: "Webhooks fornecem informações em tempo real sobre o que está acontecendo em sua conta. Você pode usar os webhooks para comunicar eventos com seus aplicativos favoritos como Slack ou Github. Clique em Configurar para configurar seus webhooks."
     dialogflow:
-      name: "Dialogflow"
-      description: "Build chatbots using Dialogflow and connect them to your inbox quickly. Let the bots handle the queries before handing them off to a customer service agent."
+      name: "Fluxo de diálogo"
+      description: "Construa chatbots usando Dialogflow e conecte-os à sua caixa de entrada rapidamente. Deixe os bots lidarem com as consultas antes de entregá-los a um agente de atendimento ao cliente."
     fullcontact:
-      name: "Fullcontact"
-      description: "FullContact integration helps to enrich visitor profiles. Identify the users as soon as they share their email address and offer them tailored customer service. Connect your FullContact to your account by sharing the FullContact API Key."
+      name: "Contato completo"
+      description: "A integração de contatos completos ajuda a enriquecer perfis de visitantes. Identifique os usuários assim que eles compartilham seu endereço de e-mail e ofereça um atendimento ao cliente personalizado. Conecte seu FullContact à sua conta compartilhando a chave de API de Contato Fullcot."
     google_translate:
-      name: "Google Translate"
-      description: "Make it easier for agents to translate messages by adding a Google Translate Integration. Google translate helps to identify the language automatically and convert it to the language chosen by the agent/account admin."
+      name: "Google Tradutor"
+      description: "Torne isso mais fácil para agentes traduzirem mensagens adicionando uma integração com o Tradutor do Google. O Tradutor do Google ajuda a identificar automaticamente o idioma e convertê-lo para o idioma escolhido pelo administrador de conta/agente."
     openai:
       name: "OpenAI"
-      description: "Integrate powerful AI features into Chatwoot by leveraging the GPT models from OpenAI."
+      description: "Integre os poderosos recursos de IA, aproveitando os modelos GPT da OpenAI."
   public_portal:
     search:
-      search_placeholder: Search for article by title or body...
-      empty_placeholder: No results found.
-      loading_placeholder: Searching...
-      results_title: Search results
-    toc_header: 'On this page'
+      search_placeholder: Pesquisar por artigo por título ou corpo...
+      empty_placeholder: Nenhum resultado encontrado.
+      loading_placeholder: Procurando...
+      results_title: Resultados de pesquisa
+    toc_header: 'Nesta página'
     hero:
-      sub_title: Search for the articles here or browse the categories below.
+      sub_title: Pesquise os artigos aqui ou navegue pelas categorias abaixo.
     common:
-      home: Home
-      last_updated_on: Last updated on %{last_updated_on}
-      view_all_articles: View all
-      article: article
-      articles: articles
-      author: author
-      authors: authors
-      other: other
-      others: others
-      by: By
-      no_articles: There are no articles here
+      home: Principal
+      last_updated_on: Última atualização em %{last_updated_on}
+      view_all_articles: Visualizar tudo
+      article: artigo
+      articles: artigos
+      author: autor
+      authors: autores
+      other: outro
+      others: outros
+      by: Por
+      no_articles: Não há artigos aqui
     footer:
-      made_with: Made with
+      made_with: Criado com
     header:
-      go_to_homepage: Website
+      go_to_homepage: Site
       appearance:
-        system: System
-        light: Light
-        dark: Dark
-      featured_articles: Featured Articles
-      uncategorized: Uncategorized
+        system: Sistema
+        light: Claro
+        dark: Escuro
+      featured_articles: Artigos em Destaque
+      uncategorized: Não categorizado
     404:
-      title: Page not found
-      description: We couldn't find the page you were looking for.
-      back_to_home: Go to home page
+      title: Página não encontrada
+      description: Não conseguimos encontrar a página que você estava procurando.
+      back_to_home: Ir para a página inicial
   slack_unfurl:
     fields:
-     name: Name
-     email: Email
-     phone_number: Phone
-     company_name: Company
-     inbox_name: Inbox
-     inbox_type: Inbox Type
-    button: Open conversation
+      name: Nome
+      email: E-mail
+      phone_number: Telefone
+      company_name: Empresa
+      inbox_name: Caixa de Entrada
+      inbox_type: Tipo de Caixa de Entrada
+    button: Abrir conversa
   time_units:
     days:
-      one: "%{count} day"
-      other: "%{count} days"
+      one: "%{count} dia"
+      other: "%{count} dias"
     hours:
-      one: "%{count} hour"
-      other: "%{count} hours"
+      one: "%{count} hora"
+      other: "%{count} horas"
     minutes:
-      one: "%{count} minute"
-      other: "%{count} minutes"
+      one: "%{count} minuto"
+      other: "%{count} minutos"
     seconds:
-      one: "%{count} second"
-      other: "%{count} seconds"
+      one: "%{count} segundo"
+      other: "%{count} segundos"
