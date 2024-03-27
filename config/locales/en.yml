@@ -62,6 +62,9 @@ pt_BR:
         name: 'não deve iniciar ou terminar com símbolos e não deve ter os caracteres: < > / \ @.'
     custom_filters:
       number_of_records: Limite atingido. O número máximo de filtros personalizados permitidos para um usuário por conta é de 50.
+      invalid_attribute: Chave de atributo inválida - [%{key}]. A chave deve ser [%{allowed_keys}] ou um atributo personalizado definido na conta.
+      invalid_operator: Operador inválido. Os operadores permitidos para %{attribute_name} são [%{allowed_keys}].
+      invalid_value: Valor inválido. Os valores fornecidos para %{attribute_name} são inválidos
   reports:
     period: Reportando o período %{since} a %{until}
     utc_warning: O relatório gerado está em fuso horário UTC
@@ -88,6 +91,16 @@ pt_BR:
       avg_resolution_time: Tempo médio de resolução (minutos)
     conversation_traffic_csv:
       timezone: Timezone
+    default_group_by: dia
+    sla_csv:
+      conversation_id: Conversation ID
+      sla_policy_breached: SLA Policy
+      assignee: Assignee
+      team: Team
+      inbox: Inbox
+      labels: Labels
+      conversation_link: Link da Conversa
+      breached_events: Breached Events
     default_group_by: dia
     csat:
       headers:
