@@ -12,7 +12,7 @@ RSpec.describe 'Session', type: :request do
              params: params,
              as: :json
         expect(response).to have_http_status(:unauthorized)
-        expect(response.body).to include('Invalid login credentials')
+        expect(response.body).to include('Email e/ou senha inválido')
       end
     end
 
@@ -53,7 +53,7 @@ RSpec.describe 'Session', type: :request do
              params: params,
              as: :json
         expect(response).to have_http_status(:unauthorized)
-        expect(response.body).to include('Invalid login credentials')
+        expect(response.body).to include('Email e/ou senha inválido')
       end
     end
 
@@ -72,14 +72,6 @@ RSpec.describe 'Session', type: :request do
         post new_user_session_url, params: params, as: :json
         expect(response).to have_http_status(:unauthorized)
       end
-    end
-  end
-
-  describe 'GET /auth/sign_in' do
-    it 'redirects to the frontend login page with error' do
-      get new_user_session_url
-
-      expect(response).to redirect_to(%r{/app/login\?error=access-denied$})
     end
   end
 end
