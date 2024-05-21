@@ -12,7 +12,7 @@ RSpec.describe 'Session', type: :request do
              params: params,
              as: :json
         expect(response).to have_http_status(:unauthorized)
-        expect(response.body).to include('Invalid login credentials')
+        expect(response.body).to include('Email e/ou senha inválido')
       end
     end
 
@@ -53,7 +53,7 @@ RSpec.describe 'Session', type: :request do
              params: params,
              as: :json
         expect(response).to have_http_status(:unauthorized)
-        expect(response.body).to include('Invalid login credentials')
+        expect(response.body).to include('Email e/ou senha inválido')
       end
     end
 
