@@ -1,29 +1,28 @@
-<p>Hi <%= @resource.name %>,</p>
-
-<% account_user = @resource&.account_users&.first %>
-
-<% if account_user&.inviter.present? && @resource.unconfirmed_email.blank? %>
-  <p><%= account_user.inviter.name %>, with <%= account_user.account.name %>, has invited you to try out <%= global_config['BRAND_NAME'] || 'Chatwoot' %>.</p>
-<% end %>
-
-<% if @resource.confirmed? %>
-  <p>You can login to your <%= global_config['BRAND_NAME'] || 'Chatwoot' %> account through the link below:</p>
-<% else %>
-  <% if account_user&.inviter.blank? %>
-  <p>
-    Welcome to <%= global_config['BRAND_NAME'] || 'Chatwoot' %>! We have a suite of powerful tools ready for you to explore. Before that we quickly need to verify your email address to know it's really you.
-  </p>
-  <% end %>
-  <p>Please take a moment and click the link below and activate your account.</p>
-<% end %>
-
-
-<% if @resource.unconfirmed_email.present? %>
-  <p><%= link_to 'Confirm my account', frontend_url('auth/confirmation', confirmation_token: @token) %></p>
-<% elsif @resource.confirmed? %>
-  <p><%= link_to 'Login to my account', frontend_url('auth/sign_in') %></p>
-<% elsif account_user&.inviter.present? %>
-  <p><%= link_to 'Confirm my account', frontend_url('auth/password/edit', reset_password_token: @resource.send(:set_reset_password_token)) %></p>
-<% else %>
-  <p><%= link_to 'Confirm my account', frontend_url('auth/confirmation', confirmation_token: @token) %></p>
-<% end %>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; text-align: center;">
+  <div style="width: 100%; margin: 0 auto; padding: 20px; box-sizing: border-box; text-align: center;">
+    <p style="font-size: 24px; font-family: Arial; font-weight: bold;">Convite para usar a plataforma <%= global_config['BRAND_NAME'] || 'Chatwoot' %></p>
+    <div style="margin: 10px 0; border-top: 1px solid #eeeeee;"></div>
+    <div style="font-size: 16px; font-family: Arial, sans-serif; text-align: center;">
+      <p>Olá, <b><%= @resource.name %></b>, tudo bem?</p>
+      <% account_user = @resource&.account_users&.first %>
+      <% if account_user&.inviter.present? %>
+        <p>Você foi convidado pelo <b><%= account_user.inviter.name %></b> da <b><%= account_user.account.name %></b> para se juntar à equipe na nova plataforma de atendimento <b><%= global_config['BRAND_NAME'] || 'Chatwoot' %></b></p>
+      <% end %>
+      <p>Você pode criar uma senha para acessar sua conta clicando no botão abaixo:</p>
+    </div>
+    <div style="text-align: center;">
+      <% if @resource.unconfirmed_email.present? %>
+        <p><a href="<%= frontend_url('auth/confirmation', confirmation_token: @token) %>" style="display: inline-block; padding: 15px 25px; font-size: 18px; font-family: Arial; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 0;">Vamos nessa!</a></p>
+      <% elsif @resource.confirmed? %>
+        <p><a href="<%= frontend_url('auth/sign_in') %>" style="display: inline-block; padding: 15px 25px; font-size: 18px; font-family: Arial; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 0;">Vamos nessa!</a></p>
+      <% elsif account_user&.inviter.present? %>
+        <p><a href="<%= frontend_url('auth/password/edit', reset_password_token: @resource.send(:set_reset_password_token)) %>" style="display: inline-block; padding: 15px 25px; font-size: 18px; font-family: Arial; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 0;">Vamos nessa!</a></p>
+      <% else %>
+        <p><a href="<%= frontend_url('auth/confirmation', confirmation_token: @token) %>" style="display: inline-block; padding: 15px 25px; font-size: 18px; font-family: Arial; background-color: #007bff; color: #ffffff; text-decoration: none; border-radius: 0;">Vamos nessa!</a></p>
+      <% end %>
+    </div>
+  </div>
+</body>
+</html>
