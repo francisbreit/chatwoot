@@ -87,7 +87,7 @@ es:
       avg_first_response_time: Promedio de tiempo de la primera respuesta (Minutos)
       avg_resolution_time: Promedio de tiempo de resolución (Minutos)
     conversation_traffic_csv:
-      timezone: Timezone
+      timezone: Zona horaria
     default_group_by: día
     csat:
       headers:
