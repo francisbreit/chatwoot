@@ -1,3 +1,4 @@
+
 #Files in the config/locales directory are used for internationalization
 #and are automatically loaded by Rails. If you want to use locales other
 #than English, add the necessary files in this directory.
@@ -184,7 +185,7 @@ pt_BR:
       email_subject: "Novas mensagens nesta conversa"
       transcript_subject: "Transcrição da conversa"
     survey:
-      response: "Agradecemos pelo seu contato! Para saber se estamos atendendo suas expectativas, por favor, avalie seu atendimento: %{link}\n\nVocê também pode nos ajudar respondendo nossa pesquisa de satisfação de atendimento. Acesse o link abaixo:\nhttps://forms.gle/WC7xn31SBHy6BD4m6\n\nSua opinião nos ajuda a melhorar cada vez mais! 😀🚀"
+      response: "Por favor, classifique esta conversa, %{link}"
   contacts:
     online:
       delete: "%{contact_name} está Online, por favor, tente novamente mais tarde"
