@@ -1,8 +1,33 @@
+<script>
+import PageHeader from '../../SettingsSubPageHeader.vue';
+import Twilio from './Twilio.vue';
+import ThreeSixtyDialogWhatsapp from './360DialogWhatsapp.vue';
+import CloudWhatsapp from './CloudWhatsapp.vue';
+import CloudEmbededSignupWhatsapp from './CloudEmbededSignupWhatsapp.vue';
+import Unoapi from './Unoapi.vue';
+
+export default {
+  components: {
+    PageHeader,
+    Twilio,
+    ThreeSixtyDialogWhatsapp,
+    CloudWhatsapp,
+    CloudEmbededSignupWhatsapp,
+    Unoapi,
+  },
+  data() {
+    return {
+      provider: 'whatsapp_cloud', // Valor padrão permanece whatsapp_cloud
+    };
+  },
+};
+</script>
+
 <template>
   <div
     class="border border-slate-25 dark:border-slate-800/60 bg-white dark:bg-slate-900 h-full p-6 w-full max-w-full md:w-3/4 md:max-w-[75%] flex-shrink-0 flex-grow-0"
   >
-    <page-header
+    <PageHeader
       :header-title="$t('INBOX_MGMT.ADD.WHATSAPP.TITLE')"
       :header-content="$t('INBOX_MGMT.ADD.WHATSAPP.DESC')"
     />
@@ -12,6 +37,9 @@
         <select v-model="provider">
           <option value="whatsapp_cloud">
             {{ $t('INBOX_MGMT.ADD.WHATSAPP.PROVIDERS.WHATSAPP_CLOUD') }}
+          </option>
+          <option value="embeded_signup">
+            Embedded Signup
           </option>
           <option value="twilio">
             {{ $t('INBOX_MGMT.ADD.WHATSAPP.PROVIDERS.TWILIO') }}
@@ -23,32 +51,10 @@
       </label>
     </div>
 
-    <twilio v-if="provider === 'twilio'" type="whatsapp" />
-    <three-sixty-dialog-whatsapp v-else-if="provider === '360dialog'" />
-    <cloud-whatsapp v-else-if="provider === 'whatsapp_cloud'" />
-    <unoapi v-else />
+    <Twilio v-if="provider === 'twilio'" type="whatsapp" />
+    <ThreeSixtyDialogWhatsapp v-else-if="provider === '360dialog'" />
+    <CloudWhatsapp v-else-if="provider === 'whatsapp_cloud'" />
+    <CloudEmbededSignupWhatsapp v-else-if="provider === 'embeded_signup'" />
+    <Unoapi v-else />
   </div>
 </template>
-
-<script>
-import PageHeader from '../../SettingsSubPageHeader.vue';
-import Twilio from './Twilio.vue';
-import Unoapi from './Unoapi.vue';
-import ThreeSixtyDialogWhatsapp from './360DialogWhatsapp.vue';
-import CloudWhatsapp from './CloudWhatsapp.vue';
-
-export default {
-  components: {
-    PageHeader,
-    Twilio,
-    ThreeSixtyDialogWhatsapp,
-    CloudWhatsapp,
-    Unoapi,
-  },
-  data() {
-    return {
-      provider: 'whatsapp_cloud',
-    };
-  },
-};
-</script>
