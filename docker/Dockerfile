@@ -1,23 +1,20 @@
-# pre-build stage
-FROM ruby:3.2.2-alpine3.18 AS pre-builder
+# Pre-build stage
+FROM ruby:3.2.2-alpine3.19 AS pre-builder
 
-# ARG default to production settings
-# For development docker-compose file overrides ARGS
+# ARG e ENV para configurações
 ARG BUNDLE_WITHOUT="development:test"
-ENV BUNDLE_WITHOUT ${BUNDLE_WITHOUT}
-ENV BUNDLER_VERSION=2.1.2
-
-ARG RAILS_SERVE_STATIC_FILES=true
-ENV RAILS_SERVE_STATIC_FILES ${RAILS_SERVE_STATIC_FILES}
+ENV BUNDLE_WITHOUT=${BUNDLE_WITHOUT}
+ENV BUNDLER_VERSION=2.5.11
 
 ARG RAILS_ENV=production
-ENV RAILS_ENV ${RAILS_ENV}
+ENV RAILS_ENV=${RAILS_ENV}
 
 ARG NODE_OPTIONS="--openssl-legacy-provider"
-ENV NODE_OPTIONS ${NODE_OPTIONS}
+ENV NODE_OPTIONS=${NODE_OPTIONS}
 
 ENV BUNDLE_PATH="/gems"
 
+# Instalação de dependências
 RUN apk update && apk add --no-cache \
   openssl \
   tar \
@@ -25,74 +22,66 @@ RUN apk update && apk add --no-cache \
   tzdata \
   postgresql-dev \
   postgresql-client \
-  nodejs-current \
+  nodejs \
   yarn \
   git \
-  && mkdir -p /var/app \
-  && gem install bundler
+  ruby-dev \
+  linux-headers \
+  g++ \
+  && gem install bundler -v ${BUNDLER_VERSION}
 
 WORKDIR /app
 
+# Copiar Gemfile e instalar gems
 COPY Gemfile Gemfile.lock ./
 
-# natively compile grpc and protobuf to support alpine musl (dialogflow-docker workflow)
-# https://github.com/googleapis/google-cloud-ruby/issues/13306
-# adding xz as nokogiri was failing to build libxml
-# https://github.com/chatwoot/chatwoot/issues/4045
-RUN apk update && apk add --no-cache build-base musl ruby-full ruby-dev gcc make musl-dev openssl openssl-dev g++ linux-headers xz vips
-RUN bundle config set --local force_ruby_platform true
+# Configuração para forçar Ruby em Alpine
+RUN apk add --no-cache build-base musl ruby-full musl-dev openssl-dev xz vips \
+  && bundle config set --local force_ruby_platform true \
+  && bundle install -j4 --retry 3 --without development test
 
-# Do not install development or test gems in production
-RUN if [ "$RAILS_ENV" = "production" ]; then \
-  bundle config set without 'development test'; bundle install -j 4 -r 3; \
-  else bundle install -j 4 -r 3; \
-  fi
-
+# Instalar dependências JS
 COPY package.json yarn.lock ./
 RUN yarn install
 
+# Copiar restante da aplicação
 COPY . /app
 
-# creating a log directory so that image wont fail when RAILS_LOG_TO_STDOUT is false
-# https://github.com/chatwoot/chatwoot/issues/701
+# Criar diretório de logs
 RUN mkdir -p /app/log
 
-# generate production assets if production environment
+# Gerar assets de produção
 RUN if [ "$RAILS_ENV" = "production" ]; then \
-  SECRET_KEY_BASE=precompile_placeholder RAILS_LOG_TO_STDOUT=enabled bundle exec rake assets:precompile \
+  SECRET_KEY_BASE=precompile_placeholder RAILS_LOG_TO_STDOUT=enabled \
+  bundle exec rake assets:precompile \
   && rm -rf spec node_modules tmp/cache; \
   fi
 
-# Generate .git_sha file with current commit hash
+# Gerar arquivo .git_sha com hash do commit
 RUN git rev-parse HEAD > /app/.git_sha
 
-# Remove unnecessary files
+# Limpeza de arquivos desnecessários
 RUN rm -rf /gems/ruby/3.2.0/cache/*.gem \
   && find /gems/ruby/3.2.0/gems/ \( -name "*.c" -o -name "*.o" \) -delete \
   && rm -rf .git \
   && rm .gitignore
 
-# final build stage
-FROM ruby:3.2.2-alpine3.18
+# Final build stage
+FROM ruby:3.2.2-alpine3.19
 
-
+# ARG e ENV para configurações
 ARG BUNDLE_WITHOUT="development:test"
-ENV BUNDLE_WITHOUT ${BUNDLE_WITHOUT}
-ENV BUNDLER_VERSION=2.1.2
+ENV BUNDLE_WITHOUT=${BUNDLE_WITHOUT}
+ENV BUNDLER_VERSION=2.5.11
 
 ARG EXECJS_RUNTIME="Disabled"
-ENV EXECJS_RUNTIME ${EXECJS_RUNTIME}
-
-ARG RAILS_SERVE_STATIC_FILES=true
-ENV RAILS_SERVE_STATIC_FILES ${RAILS_SERVE_STATIC_FILES}
-
-ARG BUNDLE_FORCE_RUBY_PLATFORM=1
-ENV BUNDLE_FORCE_RUBY_PLATFORM ${BUNDLE_FORCE_RUBY_PLATFORM}
+ENV EXECJS_RUNTIME=${EXECJS_RUNTIME}
 
 ARG RAILS_ENV=production
-ENV RAILS_ENV ${RAILS_ENV}
+ENV RAILS_ENV=${RAILS_ENV}
 ENV BUNDLE_PATH="/gems"
 
+# Instalação de dependências necessárias
 RUN apk update && apk add --no-cache \
   build-base \
   openssl \
@@ -101,21 +90,19 @@ RUN apk update && apk add --no-cache \
   imagemagick \
   git \
   vips \
-  && gem install bundler
+  && gem install bundler -v ${BUNDLER_VERSION}
 
-RUN if [ "$RAILS_ENV" != "production" ]; then \
-  apk add --no-cache nodejs-current yarn; \
-  fi
-
+# Copiar arquivos do pre-builder
 COPY --from=pre-builder /gems/ /gems/
 COPY --from=pre-builder /app /app
-
-# Copy .git_sha file from pre-builder stage
 COPY --from=pre-builder /app/.git_sha /app/.git_sha
 
 WORKDIR /app
 
-# permisos para rails
+# Permissões necessárias
 RUN chmod -R 777 ./docker
 
+# Expor porta
 EXPOSE 3000
+
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3000"]
